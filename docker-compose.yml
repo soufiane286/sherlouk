@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - .:/app
+    ports:
+      - "5173:5173"
+    command: ["npm","run","dev"]
+  server:
+    build:
+      context: ./server
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
